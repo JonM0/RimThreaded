@@ -474,7 +474,20 @@ namespace RimThreaded
                 }
                 else
                 {
-                    Log.Warning("regionGrid.GetValidRegionAt returned null for start at: " + start.ToString());
+                    //Log.Warning("1regionGrid.GetValidRegionAt returned null for start at: " + start.ToString());
+                    Map map1 = RegionGrid_Patch.mapFieldRef(regionGrid);
+                    CellIndices cellIndices = map1.cellIndices;
+                    int cell = cellIndices.CellToIndex(start);
+                    Region[] regionGrid2 = RegionGrid_Patch.regionGridFieldRef(regionGrid);
+                    validRegionAt = regionGrid2[cell];
+                    if (validRegionAt == null)
+                    {
+                        Log.Warning("regionGrid.GetValidRegionAt returned null for start at cell: " + cell.ToString() + " " + start.ToString());
+                    } else
+                    {
+                        QueueNewOpenRegion(validRegionAt, this_reachedIndex, this_openQueue, ref this_numRegionsOpened, regionsReached);
+                        this_startingRegions.Add(validRegionAt);
+                    }
                     //validRegionAt = regionGrid.GetValidRegionAt(start); //USE THIS LINE FOR DEBUG BREAKPOINT
                 }
             }

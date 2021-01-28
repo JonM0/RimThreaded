@@ -14,6 +14,19 @@ namespace RimThreaded
         public static Dictionary<RegionDirtyer, ConcurrentQueue<IntVec3>> dirtyCellsDict = new Dictionary<RegionDirtyer, ConcurrentQueue<IntVec3>>();
 
         public static FieldRef<RegionDirtyer, Map> map = FieldRefAccess<RegionDirtyer, Map>("map");
+        public static void SetAllClean2(RegionDirtyer __instance)
+        {
+            ConcurrentQueue<IntVec3> dirtyCells = get_DirtyCells(__instance);
+            while (dirtyCells.TryDequeue(out IntVec3 dirtyCell))
+            {
+                map(__instance).temperatureCache.ResetCachedCellInfo(dirtyCell);
+            }
+            dirtyCells = new ConcurrentQueue<IntVec3>();
+            lock (dirtyCellsDict)
+            {
+                dirtyCellsDict.SetOrAdd(__instance, dirtyCells);
+            }
+        }
         public static bool SetAllClean(RegionDirtyer __instance)
         {
             ConcurrentQueue<IntVec3> dirtyCells = get_DirtyCells(__instance);            
@@ -21,8 +34,6 @@ namespace RimThreaded
             {
                 map(__instance).temperatureCache.ResetCachedCellInfo(dirtyCell);
             }
-
-            //dirtyCells.Clear();
             return false;
         }
 

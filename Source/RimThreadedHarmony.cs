@@ -407,6 +407,7 @@ namespace RimThreaded
 			Prefix(original, patched, "ReleaseClaimedBy");
 			Prefix(original, patched, "CanReserve");
 			Prefix(original, patched, "FirstObsoleteReservationFor");
+			
 
 
 			//DynamicDrawManager
@@ -688,6 +689,7 @@ namespace RimThreaded
 			Prefix(original, patched, "FirstRespectedReserver");
 			Prefix(original, patched, "CanReserve");
 			Prefix(original, patched, "CanReserveStack");
+			Prefix(original, patched, "ReleaseAllForTarget");
 			patched = typeof(ReservationManager_Transpile);
 			//Transpile(original, patched, "CanReserve");
 
@@ -982,8 +984,8 @@ namespace RimThreaded
 			//RegionAndRoomUpdater
 			original = typeof(RegionAndRoomUpdater);
 			patched = typeof(RegionAndRoomUpdater_Patch);
-			Prefix(original, patched, "FloodAndSetRoomGroups");
-			Prefix(original, patched, "CombineNewAndReusedRoomsIntoContiguousGroups");
+			//Prefix(original, patched, "FloodAndSetRoomGroups");
+			//Prefix(original, patched, "CombineNewAndReusedRoomsIntoContiguousGroups");
 			Prefix(original, patched, "TryRebuildDirtyRegionsAndRooms");
 
 			//GenRadial
@@ -1229,6 +1231,7 @@ namespace RimThreaded
 			patched = typeof(JobGiver_OptimizeApparel_Patch);
 			Prefix(original, patched, "ApparelScoreGain");
 			Prefix(original, patched, "ApparelScoreGain_NewTmp");
+			Prefix(original, patched, "TryGiveJob");			
 
 			//HediffGiver_Heat
 			original = typeof(HediffGiver_Heat);
@@ -1566,7 +1569,21 @@ namespace RimThreaded
 			Prefix(original, patched, "SetAllDirty");
 			Prefix(original, patched, "SetRegionDirty");
 
+			//RegionDirtyer
+			original = typeof(WorkGiver_GrowerSow);
+			patched = typeof(WorkGiver_GrowerSow_Patch);
+			Prefix(original, patched, "JobOnCell");
 
+			//RegionMaker
+			original = typeof(RegionMaker);
+			patched = typeof(RegionMaker_Patch);
+			Prefix(original, patched, "TryGenerateRegionFrom");
+
+			//RegionGrid
+			original = typeof(RegionGrid);
+			patched = typeof(RegionGrid_Patch);
+			//Prefix(original, patched, "GetValidRegionAt");			
+			//Postfix(original, patched, "SetRegionAt");
 
 			// Resources_Patch
 			/* Doesn't work as Load is an external method (without a method body) and can therefor not be prefixed. Transpile would maybe be possible, but I dont think, it's a good idea...

@@ -88,7 +88,6 @@ namespace RimThreaded
                     return false;
                 }
             }
-
             Log.Warning("Couldn't find any cell in region " + __instance.ToString());
             __result = __instance.extentsClose.RandomCell;
             return false;

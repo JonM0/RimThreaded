@@ -678,8 +678,12 @@ namespace RimThreaded
             return false;
         }
 
+        public static List<int> getDisallowedCornerIndices()
+        {
+            return new List<int>(4);
+        }
         public static ushort getClosedValue()
-        {            
+        {
             if (!closedValues.TryGetValue(Thread.CurrentThread.ManagedThreadId, out ushort local_statusClosedValue))
             {
                 local_statusClosedValue = 2;

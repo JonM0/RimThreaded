@@ -248,9 +248,21 @@ namespace RimThreaded
             }
             else
             {
-                foreach (Thing search in searchSet)
+                List<Thing> listThings = new List<Thing>();
+
+                try
                 {
-                    Process2(search, center, maxDistanceSquared, priorityGetter, ref bestPrio, ref closestDistSquared, ref chosen, validator);
+                    foreach (Thing search in searchSet)
+                    {
+                        listThings.Add(search);
+                    }
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                }
+                for (int index = 0; index < listThings.Count; ++index)
+                { 
+                    Process2(listThings[index], center, maxDistanceSquared, priorityGetter, ref bestPrio, ref closestDistSquared, ref chosen, validator);
                 }
             }
             __result = chosen;

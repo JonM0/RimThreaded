@@ -92,6 +92,8 @@
     <Compile Include="Hauling_Transpile.cs" />
     <Compile Include="ListerBuildings.cs" />
     <Compile Include="MemoryThoughtHandler_Patch.cs" />
+    <Compile Include="PathFinder_Transpile.cs" />
+    <Compile Include="PathFinder_Transpile2.cs" />
     <Compile Include="PawnCapacitiesHandler_Transpile.cs" />
     <Compile Include="PawnDestinationReservationManager_Patch.cs" />
     <Compile Include="PlayDataLoader_Patch.cs" />
@@ -100,6 +102,8 @@
     <Compile Include="ReachabilityCache.cs" />
     <Compile Include="RecordWorker_TimeGettingJoy.cs" />
     <Compile Include="RegionDirtyer_Patch.cs" />
+    <Compile Include="RegionGrid_Patch.cs" />
+    <Compile Include="RegionMaker_Patch.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="RoofGrid.cs" />
     <Compile Include="SickPawnVisitUtility.cs" />
@@ -147,6 +151,7 @@
     <Compile Include="MeshMakerPlanes.cs" />
     <Compile Include="CE_Utility_Transpile.cs" />
     <Compile Include="Verb_MeleeAttackCE_Transpile.cs" />
+    <Compile Include="WorkGiver_GrowerSow_Patch.cs" />
     <Compile Include="WorldFloodFiller.cs" />
     <Compile Include="ReservationUtility.cs" />
     <Compile Include="PlayLog.cs" />
@@ -205,7 +210,6 @@
     <Compile Include="SampleSustainer.cs" />
     <Compile Include="WorkGiver_ConstructDeliverResources_Transpile.cs" />
     <Compile Include="StoryState.cs" />
-    <Compile Include="PathFinder_Transpile.cs" />
     <Compile Include="Fire_Transpile.cs" />
     <Compile Include="SustainerAggregatorUtility.cs" />
     <Compile Include="GrammarResolverSimple.cs" />

@@ -445,6 +445,25 @@ namespace RimThreaded
 
 			return true;
 		}
+		public static bool ReleaseAllForTarget(ReservationManager __instance, Thing t)
+		{
+			if (t == null)
+			{
+				return false;
+			}
+			lock (reservations(__instance))
+			{
+				for (int num = reservations(__instance).Count - 1; num >= 0; num--)
+				{
+					if (reservations(__instance)[num].Target.Thing == t)
+					{
+						reservations(__instance).RemoveAt(num);
+					}
+				}
+			}
+			return false;
+		}
+
 
 
 
